@@ -1,0 +1,21 @@
+.navStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.navStyle a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navStyle .logoStyle {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Add your custom styling here */
