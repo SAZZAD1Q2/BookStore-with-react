@@ -125,6 +125,9 @@ You may use the online version of my work. Here is the link of online version: h
 
 ## 🔭 Future Features <a name="future-features"></a>
 
+a. I will use Redux in React components.
+b. I will connect the book store application to API.
+
 
 - [ ] **[Delete Completed works]**
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
