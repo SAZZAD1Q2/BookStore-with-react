@@ -1,26 +1,30 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Button from './Button';
+import PropTypes from 'prop-types'; // Add this import
 
-const Book = ({ title, author }) => (
-  <div className="book">
+const Book = ({
+  itemId, title, author, category, onRemove,
+}) => (
+  <div>
     <h3>{title}</h3>
     <p>
-      Written by
+      Author:
       {author}
     </p>
-    <Button name="Remove" />
+    <p>
+      Category:
+      {category}
+    </p>
+    <button type="button" onClick={() => onRemove(itemId)}>Remove</button>
   </div>
 );
 
+// Add propTypes for the component props
 Book.propTypes = {
-  title: PropTypes.string,
-  author: PropTypes.string,
-};
-
-Book.defaultProps = {
-  title: 'Book Title',
-  author: 'Unknown Author',
+  itemId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default Book;
