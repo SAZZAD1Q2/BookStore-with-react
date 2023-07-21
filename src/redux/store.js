@@ -1,13 +1,16 @@
-// src/redux/store.js
-
 import { configureStore } from '@reduxjs/toolkit';
 import booksReducer from './books/booksSlice';
+import categoriesReducer from './categories/categoriesSlice';
 
 const store = configureStore({
   reducer: {
     books: booksReducer,
-    // Add other reducers if needed
+    categories: categoriesReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
+
 });
 
 export default store;

@@ -28,7 +28,7 @@
 
 # 📖 BookStore-with-react <a name="BookStore-with-react"></a>
 
-> It is a BookStore-with-react project. In this lproject I will add react components
+> It is a BookStore-with-react project. In this lproject I will add react components and add and get book using axios api
 
 **BookStore-with-react** is a Microverse assined project. In this project I will apply React step by step.
 

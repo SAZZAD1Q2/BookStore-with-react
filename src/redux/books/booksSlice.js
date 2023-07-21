@@ -1,53 +1,67 @@
-// src/redux/booksSlice.js
-
+/* eslint-disable import/no-extraneous-dependencies */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiUrl = 'http://your-bookstore-api-url'; // Replace with your Bookstore API URL
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/H6Kwf9RFYqmH27hMCQyn/books';
 
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
-  const response = await axios.get(`${apiUrl}/books`);
-  return response.data;
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async (thunkAPI) => {
+  try {
+    const resp = await axios.get(url);
+    return resp.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue('ooops smoething wrent wrong');
+  }
 });
 
-export const addBook = createAsyncThunk('books/addBook', async (book) => {
-  const response = await axios.post(`${apiUrl}/books`, book);
-  return response.data;
+export const addNewBook = createAsyncThunk('books/addBook', async ({
+  title,
+  author,
+  category,
+  item_id: itemId,
+}, thunkAPI) => {
+  const newbook = {
+    title,
+    author,
+    category,
+    item_id: itemId,
+  };
+  await axios.post(url, newbook);
+  thunkAPI.dispatch(fetchBooks());
 });
 
-export const removeBook = createAsyncThunk('books/removeBook', async (bookId) => {
-  await axios.delete(`${apiUrl}/books/${bookId}`);
-  return bookId;
+export const removeBook = createAsyncThunk('books/removeBook', async (itemId, thunkAPI) => {
+  await axios.delete(url.concat('/') + itemId);
+  thunkAPI.dispatch(fetchBooks());
 });
 
-const booksSlice = createSlice({
+const initialState = {
+  bookItems: [],
+  isLoading: false,
+  error: null,
+};
+
+const bookSlice = createSlice({
   name: 'books',
-  initialState: {
-    books: [],
-    status: 'idle',
-    error: null,
+  initialState,
+  reducers: {
+    removeBook: (state, action) => {
+      const itemId = action.payload;
+      return state.filter((item) => item.item_id !== itemId);
+    },
   },
-  reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchBooks.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchBooks.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.books = action.payload;
-      })
-      .addCase(fetchBooks.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(addBook.fulfilled, (state, action) => {
-        state.books.push(action.payload);
-      })
-      .addCase(removeBook.fulfilled, (state, action) => {
-        state.books = state.books.filter((book) => book.id !== action.payload);
-      });
+    builder.addCase(fetchBooks.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchBooks.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.bookItems = action.payload;
+    });
+    builder.addCase(fetchBooks.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
-export default booksSlice.reducer;
+export default bookSlice.reducer;

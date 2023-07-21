@@ -1,44 +1,49 @@
-// src/components/YourComponent.js
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNewBook } from '../redux/books/booksSlice';
 
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, addBook, removeBook } from '../redux/booksSlice';
-
-const YourComponent = () => {
+function BookForm() {
   const dispatch = useDispatch();
-  const books = useSelector((state) => state.books.books);
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
 
-  useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
-
-  const handleAddBook = () => {
-    const newBook = { title: 'New Book', author: 'Unknown' }; // Replace with your book details
-    dispatch(addBook(newBook));
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
   };
 
-  const handleRemoveBook = (bookId) => {
-    dispatch(removeBook(bookId));
+  const handleAuthorChange = (e) => {
+    setAuthor(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addNewBook({
+      title,
+      author,
+      category: 'Fiction',
+      item_id: `item${Math.floor(Math.random() * 1000)}`,
+    }));
+    setTitle('');
+    setAuthor('');
   };
 
   return (
-    <div>
-      {/* Render your books list here */}
-      <ul>
-        {books.map((book) => (
-          <li key={book.id}>
-            {book.title}
-            {' '}
-            -
-            {book.author}
-            <button onClick={() => handleRemoveBook(book.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
-
-      <button onClick={handleAddBook}>Add Book</button>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={title}
+        placeholder="Book Title"
+        onChange={handleTitleChange}
+      />
+      <input
+        type="text"
+        value={author}
+        placeholder="Author"
+        onChange={handleAuthorChange}
+      />
+      <button type="submit">Add your book</button>
+    </form>
   );
-};
+}
 
-export default YourComponent;
+export default BookForm;
