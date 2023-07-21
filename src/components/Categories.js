@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Categories = () => (
-  <div>
-    <h2>Categories</h2>
-    <p>Categories will be displayed here</p>
-  </div>
-);
+function Categories() {
+  return (
+    <>
+      <div>
+        Category page
+      </div>
+
+    </>
+  );
+}
 
 export default Categories;
