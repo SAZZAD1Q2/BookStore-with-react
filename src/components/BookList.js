@@ -1,29 +1,27 @@
+// BookList.js
+
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Book from './Book';
-import { removeBook } from '../redux/books/booksSlice';
+import { useSelector } from 'react-redux';
 
 const BookList = () => {
-  const dispatch = useDispatch();
-  const books = useSelector((state) => state.books);
+  const books = useSelector((state) => state.books.data); // Assuming
 
-  const handleRemoveBook = (itemId) => {
-    dispatch(removeBook(itemId));
-  };
+  // Handle case where books data is not available or empty
+  if (!books || books.length === 0) {
+    return <div>No books available</div>;
+  }
 
   return (
-    <div>
+    <ul>
       {books.map((book) => (
-        <Book
-          key={book.item_id}
-          itemId={book.item_id}
-          title={book.title}
-          author={book.author}
-          category={book.category}
-          onRemove={handleRemoveBook}
-        />
+        <li key={book.id}>
+          {book.title}
+          {' '}
+          -
+          {book.author}
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 
