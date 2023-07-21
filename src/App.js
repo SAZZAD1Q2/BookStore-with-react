@@ -2,14 +2,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Im
 
 import ShowBook from './components/showBook';
 import Categories from './components/Categories';
-import Layout from './components/Layout';
+import Arrange from './components/arrange';
 
 function App() {
   return (
     <Router>
       {' '}
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Arrange />}>
           <Route index element={<ShowBook />} />
           <Route path="/categories" element={<Categories />} />
         </Route>
