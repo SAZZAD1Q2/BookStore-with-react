@@ -238,8 +238,8 @@
 
 .add_btn:hover {
   cursor: pointer;
-  background-color: white;
-  color: #02a8ff;
+  background-color: rgb(9, 199, 232);
+  color: #f4f6f8;
   transition: 0.3s;
 }
 
