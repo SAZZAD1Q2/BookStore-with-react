@@ -4,13 +4,13 @@ import React from 'react';
 function Chapter() {
   return (
     <>
-      <div className="complited-container">
-        <span className="line" />
-        <div className="chapter-container">
-          <h2 className="current">current chapter</h2>
+      <div className="compliteContainer">
+        <span className="conline" />
+        <div className="chapterContainer">
+          <h2 className="currentChap">Current Chapter</h2>
           <h1 className="chapter">chapter:7 " A Lesson Learned "</h1>
-          <div className="update">
-            <p className="update-content">UPDATE PROGRESS</p>
+          <div className="updateChap">
+            <p className="updateChaptContent">UPDATE PROGRESS</p>
           </div>
         </div>
       </div>

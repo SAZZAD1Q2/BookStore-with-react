@@ -5,27 +5,27 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 function Completed() {
   return (
     <>
-      <div className="main-completed">
+      <div className="mainComplete">
         <CircularProgressbar
           value={65}
-          className="oval"
+          className="ovalStyle"
           styles={{
             trail: {
-              stroke: '#d6d6d6',
-              strokeLinecap: 'butt',
-              transformOrigin: 'center center',
+              stroke: '#e8e8e8',
+              strokeLinecap: 'round',
+              transformOrigin: 'center',
             },
             path: {
-              stroke: '#0290ff',
-              strokeLinecap: 'butt',
-              transition: 'stroke-dashoffset 0.5s ease 0s',
-              transformOrigin: 'center center',
+              stroke: '#02a8ff',
+              strokeLinecap: 'round',
+              transition: 'stroke-dashoffset 0.6s ease 0s',
+              transformOrigin: 'center',
             },
           }}
         />
-        <div className="comp-container">
+        <div className="completeContainer">
           <h4>73%</h4>
-          <p className="complited">Completed</p>
+          <p className="complite">Completed</p>
         </div>
       </div>
     </>

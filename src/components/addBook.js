@@ -42,7 +42,7 @@ function BookForm() {
         placeholder="Author"
         onChange={handleAuthorChange}
       />
-      <button type="submit" className="add-btn">Add your book</button>
+      <button type="submit" className="add_btn">Add your book</button>
     </form>
   );
 }

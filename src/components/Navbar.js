@@ -10,20 +10,20 @@ const navLinks = [
 function Navbar() {
   return (
     <>
-      <div className="navbar-container">
-        <div className="navbar">
-          <h1 className="logo">Bookstore CMS</h1>
-          <ul className="nav-items">
+      <div className="navContainer">
+        <div className="Navbar">
+          <h1 className="logoStyle">Bookstore CMS</h1>
+          <ul className="navItems">
             {
       navLinks.map((navLink) => (
-        <li key={navLink.text} className="nav">
-          <Link to={navLink.path} className="nav-link">{navLink.text}</Link>
+        <li key={navLink.text} className="Nav">
+          <Link to={navLink.path} className="navLink">{navLink.text}</Link>
         </li>
       ))
   }
           </ul>
         </div>
-        <BsPersonCircle className="user-icon" />
+        <BsPersonCircle className="userIcon" />
       </div>
     </>
   );

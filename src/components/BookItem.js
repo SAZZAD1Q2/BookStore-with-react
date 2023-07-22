@@ -7,18 +7,18 @@ import Chapter from './Chapter';
 function BookItem({ book, itemId }) {
   return (
     <>
-      <div className="book">
-        <div className="book-container">
-          <div className="book-descr">
-            <p className="action">{book.category}</p>
-            <h4 className="book-title">{book.title}</h4>
-            <span className="book-author">{book.author}</span>
-            <ul className="comment-container">
-              <li>comments</li>
+      <div className="books">
+        <div className="bookContainer">
+          <div className="bookDescription">
+            <p className="actionPare">{book.category}</p>
+            <h4 className="bookTitle">{book.title}</h4>
+            <span className="bookAuthor">{book.author}</span>
+            <ul className="commentContainer">
+              <li>Comment</li>
               |
               <RemoveBookBtn itemId={itemId} />
               |
-              <li>edit</li>
+              <li>Edit</li>
             </ul>
           </div>
           <Completed />
