@@ -29,6 +29,7 @@ function BookForm() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <lavel className="form-title">Add new book</lavel>
       <input
         type="text"
         value={title}
@@ -41,7 +42,7 @@ function BookForm() {
         placeholder="Author"
         onChange={handleAuthorChange}
       />
-      <button type="submit">Add your book</button>
+      <button type="submit" className="add-btn">Add your book</button>
     </form>
   );
 }
